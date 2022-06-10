@@ -19,7 +19,7 @@
     border-radius: 0.5rem;
     background-color: #3a54aa;
     color: #fff;
-    font-weight: bold;
+    /*  font-weight: bold; */
     font-size: 1rem;
     border: none;
     padding: 0.5rem 0;
