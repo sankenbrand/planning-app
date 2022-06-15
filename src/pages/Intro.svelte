@@ -27,3 +27,9 @@
     </article>
   </article>
 </section>
+
+<style>
+  p {
+    margin-bottom: 2rem;
+  }
+</style>
