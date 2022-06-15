@@ -1,9 +1,10 @@
 <script>
   export let CTA_Name
   export let type
+  export let disabled
 </script>
 
-<button {type} class="btn-primary">
+<button {type} {disabled} class="btn-primary">
   {CTA_Name}
   <slot />
 </button>
@@ -17,8 +18,8 @@
     margin-top: 1rem;
     min-width: 10rem;
     border-radius: 0.5rem;
-    background-color: #3a54aa;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white);
     /*  font-weight: bold; */
     font-size: 1rem;
     border: none;

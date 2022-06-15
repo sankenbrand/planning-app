@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.5rem;
-    background-color: #3a54aa;
+    background-color: var(--primary-color);
     color: #fff;
     font-weight: bold;
     font-size: 1rem;

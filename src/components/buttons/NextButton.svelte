@@ -26,7 +26,7 @@
     align-items: center;
     gap: 0.5rem;
     width: 7rem;
-    color: #fff;
+    color: var(--white);
     position: absolute;
     top: 3%;
     right: 1%;

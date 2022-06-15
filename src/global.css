@@ -1,0 +1,66 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+:root {
+  font-size: 1rem;
+  box-sizing: inherit;
+
+  --primary-color: #3a54aa;
+
+  --white: #fff;
+
+  --success: rgb(16, 170, 16);
+  --error: rgb(170, 16, 16);
+}
+
+body {
+  font: 1em/1.618 Inter, sans-serif;
+  color: #224;
+  background: url("src/assets/bg/shapes.jpg") center / cover no-repeat fixed;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+article {
+  flex: 1;
+  padding: 0 2rem 2rem 2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+.card_layout {
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+
+.card {
+  max-width: 50rem;
+  height: 27.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px);
+}
+
+.card_left_side {
+  display: grid;
+  place-items: center;
+  max-width: 25vw;
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 0.75rem;
+}
