@@ -20,3 +20,10 @@ interface Event {
   time: string | null
   users: User[]
 }
+
+interface TableField {
+  id: number
+  category: string | null
+  time: string | null
+  users: User[] | null
+}
