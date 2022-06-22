@@ -1,10 +1,10 @@
-<script>
-  export let close
+<script lang="ts">
+  export let modalContent
 </script>
 
-<div on:click={close} class="modal">
+<div on:click|self class="modal">
   <div class="content">
-    <slot />
+    <svelte:component this={modalContent} on:click />
   </div>
 </div>
 

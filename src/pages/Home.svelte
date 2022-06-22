@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Link, useNavigate } from "svelte-navigator"
+  import ErrorAlert from "../components/alerts/ErrorAlert.svelte"
   import Button from "../components/buttons/Button.svelte"
   import NextButton from "../components/buttons/NextButton.svelte"
   import PrevButton from "../components/buttons/PrevButton.svelte"
@@ -15,14 +16,17 @@
   const utc = getUTCDate($selectedDate)
 
   let disabled = true
+
+  let isError = false
+
+  // initialise modal state and content
   let showModal = false
+  let modalContent
 
-  const open = () => {
-    showModal = true
-  }
-
-  const close = () => {
-    showModal = false
+  // pass in component as parameter and toggle modal state
+  function toggleModal(component) {
+    modalContent = component
+    showModal = !showModal
   }
 
   const addEvent = async (utc: string) => {
@@ -58,11 +62,18 @@
       })
       disabled = true
     } else {
-      console.log("Invalid form")
+      console.log("❗ Invalid form")
+      isError = true
+      setTimeout(() => {
+        isError = false
+      }, 5000)
     }
   }
 </script>
 
+{#if isError}
+  <ErrorAlert Error_Message="You haven't selected a date!" />
+{/if}
 <section class="card_layout">
   <article class="card">
     <article class="card_left_side">
@@ -86,7 +97,7 @@
           Do you want to change the category list? <span
             class="icon"
             type="button"
-            on:click={open}
+            on:click={() => toggleModal(CategoryList)}
           >
             <CogSvg />
           </span>
@@ -112,14 +123,14 @@
 </section>
 
 {#if showModal}
-  <Modal {close}>
-    <CategoryList {close} />
-  </Modal>
+  <Modal on:click={toggleModal} {modalContent} />
 {/if}
 
 <style>
   input {
-    padding: 0.25rem;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem;
   }
 
   .home_category_settings {
