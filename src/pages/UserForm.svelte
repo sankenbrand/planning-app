@@ -92,7 +92,8 @@
     selectedTime = ""
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
     if (isFormValid(name, selectedCategory, selectedTime)) {
       addUser(name, getUTCDate(event.date), selectedCategory, selectedTime)
       console.group("🌟 POST user form")

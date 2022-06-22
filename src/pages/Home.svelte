@@ -51,7 +51,8 @@
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
     if ($selectedDate !== "") {
       disabled = false
       console.group("🌟 POST event form")

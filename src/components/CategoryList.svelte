@@ -84,7 +84,8 @@
     )
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
     if (isRequiredFieldValidCheck(categoryName)) {
       if (categoryOptions.length < 3) {
         addCategory(categoryName)
