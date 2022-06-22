@@ -1,15 +1,17 @@
 <script lang="ts">
   import { onMount } from "svelte"
+  import { elasticInOut } from "svelte/easing"
+  import { slide } from "svelte/transition"
+  import { getLastEl } from "../helpers/handleArr"
   import { isRequiredFieldValidCheck } from "../lib/Validation"
   import Button from "./buttons/Button.svelte"
   import IconButton from "./buttons/IconButton.svelte"
   import MinusSvg from "./svg/MinusSvg.svelte"
   import PlusSvg from "./svg/PlusSvg.svelte"
 
-  export let close: any
-
   let categoryName = ""
   let categoryOptions: Category[]
+  let lastId: number
 
   let isError = false
 
@@ -20,6 +22,8 @@
       const data = await response.json()
       categoryOptions = data
       console.log("category options", categoryOptions)
+      let lastRecord = getLastEl(data)
+      lastId = lastRecord.categoryId
     } else {
       console.error("There was an error!")
     }
@@ -40,14 +44,23 @@
       if (res.ok && res.status == 200) {
         const data = await res.json()
         console.log(data)
-        return data
       }
     } catch (error) {
       console.error("There was an error!", error)
     }
   }
 
-  // TODO: add items
+  const addItem = (categoryName: string) => {
+    categoryName = categoryName.trim()
+    if (!categoryName) return
+
+    const category: Category = {
+      categoryId: lastId + 2,
+      categoryName: categoryName,
+    }
+
+    categoryOptions = [...categoryOptions, category]
+  }
 
   const deleteCategory = (id: number) => {
     fetch(`http://localhost:8080/api/categories/` + id, {
@@ -73,8 +86,9 @@
 
   const handleSubmit = () => {
     if (isRequiredFieldValidCheck(categoryName)) {
-      if (categoryOptions.length < 4) {
+      if (categoryOptions.length < 3) {
         addCategory(categoryName)
+        addItem(categoryName)
         console.group("🌟 POST category form")
         console.log("categoryName: " + categoryName)
         console.groupEnd()
@@ -87,7 +101,7 @@
         }, 5000)
       }
     } else {
-      console.log("Invalid form")
+      console.log("❗ Invalid form")
     }
   }
 </script>
@@ -95,7 +109,7 @@
 <section>
   <h3>Categories</h3>
   {#if isError}
-    <span class="error-message">* Max 4 categories can be set</span>
+    <span class="error-message">* Max 3 categories can be set</span>
   {/if}
   <form class="task-form" on:submit|preventDefault={handleSubmit}>
     <div class="form-group">
@@ -109,10 +123,15 @@
     </div>
   </form>
   {#if categoryOptions === undefined}
-    Loading category options...
+    <p transition:slide={{ delay: 600, duration: 300, easing: elasticInOut }}>
+      Loading category options...
+    </p>
   {:else}
     {#each categoryOptions as category (category.categoryId)}
-      <p class="card-category">
+      <p
+        class="card-category"
+        transition:slide={{ duration: 300, easing: elasticInOut }}
+      >
         {category.categoryName}
         <button
           type="button"
@@ -128,14 +147,14 @@
     {/each}
   {/if}
   <div class="btn-container">
-    <Button type="button" disabled={""} CTA_Name="Close" on:click={close} />
+    <Button type="button" on:click disabled={false} CTA_Name="Close" />
   </div>
 </section>
 
 <style>
   input {
-    width: 15rem;
     padding: 0.5rem;
+    width: 15rem;
   }
 
   .card-category {
