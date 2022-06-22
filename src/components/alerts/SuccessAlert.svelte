@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { fade, fly } from "svelte/transition"
   import CheckCircleSvg from "../svg/CheckCircleSvg.svelte"
+
   export let Success_Message: string
 </script>
 
-<div class="container">
+<div class="container" in:fly={{ y: -200, duration: 2000 }} out:fade>
   <section class="success_alert">
     <CheckCircleSvg />
     <div class="success_text">
@@ -17,6 +19,8 @@
   .container {
     display: flex;
     justify-content: flex-end;
+    position: absolute;
+    z-index: 200;
   }
 
   .success_alert {
@@ -26,11 +30,10 @@
     width: 21rem;
     background-color: var(--white);
     border-left: 5px solid var(--success);
+    border-radius: 0.25rem;
     margin-bottom: 1.5rem;
     padding: 0.5rem;
     overflow: hidden;
-    z-index: 50;
-    position: relative;
   }
 
   .success_text {
