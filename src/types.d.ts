@@ -15,15 +15,8 @@ interface User {
 
 interface Event {
   id: number
-  date: string
+  date?: string
   category: string | null
   time: string | null
   users: User[]
-}
-
-interface TableField {
-  id: number
-  category: string | null
-  time: string | null
-  users: User[] | null
 }

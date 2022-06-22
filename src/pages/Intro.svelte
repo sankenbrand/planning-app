@@ -20,7 +20,7 @@
         iaculis, condimentum sapien ac, interdum libero.
       </p>
       <Link to="/home" style="text-decoration: none">
-        <Button type="button" CTA_Name="Get started">
+        <Button type="button" disabled={false} CTA_Name="Get started">
           <ArrowRightSvg />
         </Button>
       </Link>
