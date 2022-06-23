@@ -1,5 +1,5 @@
-<script>
-  export let type
+<script lang="ts">
+  export let type: string
 </script>
 
 <button {type} class="btn-primary">

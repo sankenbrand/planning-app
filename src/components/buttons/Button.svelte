@@ -1,10 +1,11 @@
-<script>
-  export let CTA_Name
-  export let type
-  export let disabled
+<script lang="ts">
+  export let buttonClass: string = "btn-primary"
+  export let CTA_Name: string
+  export let type: string
+  export let disabled: boolean = false
 </script>
 
-<button {type} {disabled} class="btn-primary">
+<button {type} {disabled} class={buttonClass}>
   {CTA_Name}
   <slot />
 </button>
@@ -20,7 +21,6 @@
     border-radius: 0.5rem;
     background-color: var(--primary-color);
     color: var(--white);
-    /*  font-weight: bold; */
     font-size: 1rem;
     border: none;
     padding: 0.5rem 0;

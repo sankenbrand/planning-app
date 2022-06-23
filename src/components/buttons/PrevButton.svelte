@@ -1,5 +1,5 @@
-<script>
-  export let CTA_Next_Page
+<script lang="ts">
+  export let CTA_Next_Page: string
 </script>
 
 <div type="button" class="link_prev">
