@@ -19,4 +19,6 @@ interface Event {
   category: string | null
   time: string | null
   users: User[]
+  selected?: boolean
+  disabled?: boolean
 }
