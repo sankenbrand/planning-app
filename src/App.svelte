@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Route, Router } from "svelte-navigator"
+  import Event from "./pages/Event.svelte"
   import Home from "./pages/Home.svelte"
   import Intro from "./pages/Intro.svelte"
   import Overview from "./pages/Overview.svelte"
@@ -18,5 +19,8 @@
   </Route>
   <Route path="/overview">
     <Overview />
+  </Route>
+  <Route path="/events">
+    <Event />
   </Route>
 </Router>
