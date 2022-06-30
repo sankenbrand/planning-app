@@ -5,7 +5,7 @@ const stored = localStorage.selectedDate
 // or localStorage.getItem('selectedDate')
 
 // Set the stored value or a sane default.
-export const selectedDate = writable(stored || "no date selected")
+export const selectedDate = writable(stored || "")
 
 // Anytime the store changes, update the local storage value.
 selectedDate.subscribe((value) => (localStorage.selectedDate = value))
